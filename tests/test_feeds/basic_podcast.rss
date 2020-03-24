@@ -68,7 +68,7 @@
             <itunes:duration>1:05</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
             <itunes:image href="http://poo.poo/gif.jpg"/>
-            <itunes:keywords/>
+            <itunes:keywords>One keyword, a second keyword, 3rd keyword</itunes:keywords>
             <itunes:order>2</itunes:order>
             <itunes:subtitle>The Subtitle</itunes:subtitle>
             <itunes:summary>The Summary</itunes:summary>

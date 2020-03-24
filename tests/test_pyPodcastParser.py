@@ -91,8 +91,6 @@ class Test_Basic_Feed_Items(unittest.TestCase):
         self.assertEqual(self.podcast.items[0].creative_commons, "http://www.creativecommons.org/licenses/by-nc/1.0")
         self.assertEqual(self.podcast.items[1].creative_commons, None)
 
-
-
     def test_item_categories(self):
         self.assertTrue("Grateful Dead" in self.podcast.items[0].categories)
         self.assertTrue("Dead and Grateful" in self.podcast.items[1].categories)
@@ -136,6 +134,10 @@ class Test_Basic_Feed_Items(unittest.TestCase):
     def test_item_itunes_image(self):
         self.assertEqual(self.podcast.items[0].itune_image, "http://poo.poo/gif.jpg")
         self.assertEqual(self.podcast.items[1].itune_image, "http://poo.poo/gif.jpg")
+
+    def test_item_itunes_keywords(self):
+        self.assertEqual(self.podcast.items[0].itunes_keywords, ['One keyword', 'a second keyword', '3rd keyword'])
+        self.assertEqual(self.podcast.items[1].itunes_keywords, None)
 
     def test_item_itunes_order(self):
         self.assertEqual(self.podcast.items[0].itunes_order, "2")
@@ -191,6 +193,9 @@ class Test_Basic_Feed(unittest.TestCase):
     def test_dict(self):
         feed_dict = self.podcast.to_dict()
         self.assertTrue(type(feed_dict) is dict)
+
+    def test_title(self):
+        self.assertEqual(self.podcast.title, 'basic title')
 
     def test_categories(self):
         self.assertTrue("Example category 2" in self.podcast.categories)
@@ -307,7 +312,6 @@ class Test_Unicode_Feed(unittest.TestCase):
 
     def test_loding_of_basic_podcast(self):
         self.assertIsNotNone(self.basic_podcast)
-
 
     def test_copyright(self):
         self.assertEqual(self.podcast.copyright, self.unicodeish_text)

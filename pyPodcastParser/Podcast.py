@@ -198,15 +198,17 @@ class Podcast():
 
     def set_soup(self):
         """Sets soup and strips items"""
-        self.soup = BeautifulSoup(self.feed_content, "html.parser")
+        self.soup = BeautifulSoup(self.feed_content, "xml")
         for item in self.soup.findAll('item'):
             item.decompose()
         for image in self.soup.findAll('image'):
+            if len(image.contents) <= 0:
+                continue
             image.decompose()
 
     def set_full_soup(self):
         """Sets soup and keeps items"""
-        self.full_soup = BeautifulSoup(self.feed_content, "html.parser")
+        self.full_soup = BeautifulSoup(self.feed_content, "xml")
 
     def set_items(self):
         self.items = []
@@ -331,8 +333,8 @@ class Podcast():
     def set_itune_image(self):
         """Parses itunes images and set url as value"""
         try:
-            self.itune_image = self.soup.find('itunes:image').get('href')
-        except AttributeError:
+            self.itune_image = self.soup.find('itunes:image')['href']
+        except (AttributeError, TypeError):
             self.itune_image = None
 
     def set_itunes_keywords(self):
@@ -366,39 +368,37 @@ class Podcast():
     def set_last_build_date(self):
         """Parses last build date and set value"""
         try:
-            self.last_build_date = self.soup.find('lastbuilddate').string
+            self.last_build_date = self.soup.find('lastBuildDate').string
         except AttributeError:
             self.last_build_date = None
 
     def set_link(self):
         """Parses link to homepage and set value"""
         try:
-            self.link = self.soup.find('link').string
+            self.link = self.soup.link.string
         except AttributeError:
             self.link = None
 
     def set_managing_editor(self):
         """Parses managing editor and set value"""
         try:
-            self.managing_editor = self.soup.find('managingeditor').string
+            self.managing_editor = self.soup.find('managingEditor').string
         except AttributeError:
             self.managing_editor = None
 
     def set_published_date(self):
         """Parses published date and set value"""
         try:
-            self.published_date = self.soup.find('pubdate').string
+            self.published_date = self.soup.find('pubDate').string
         except AttributeError:
             self.published_date = None
 
     def set_pubsubhubbub(self):
         """Parses pubsubhubbub and email then sets value"""
-        self.pubsubhubbub = None
-        atom_links = self.soup.findAll('atom:link')
-        for atom_link in atom_links:
-            rel = atom_link.get('rel')
-            if rel == "hub":
-                self.pubsubhubbub = atom_link.get('href')
+        try:
+            self.pubsubhubbub = self.soup.find('link', rel='hub')['href']
+        except (AttributeError, TypeError):
+            self.pubsubhubbub = None
 
     def set_owner(self):
         """Parses owner name and email then sets value"""
@@ -443,6 +443,6 @@ class Podcast():
     def set_web_master(self):
         """Parses the feed's webmaster and sets value"""
         try:
-            self.web_master = self.soup.find('webmaster').string
+            self.web_master = self.soup.find('webMaster').string
         except AttributeError:
             self.web_master = None
