@@ -251,6 +251,9 @@ class Test_Basic_Feed(unittest.TestCase):
     def test_itunes_new_feed_url(self):
         self.assertEqual(self.podcast.itunes_new_feed_url, "http://newlocation.com/example.rss")
 
+    def test_itunes_type(self):
+        self.assertEqual(self.podcast.itunes_type, 'episodic')
+
     def test_language(self):
         self.assertEqual(self.podcast.language, "basic  language")
 
@@ -455,6 +458,9 @@ class Test_Missing_Info_Feed(unittest.TestCase):
     def test_itunes_new_feed_url(self):
         self.assertEqual(self.podcast.itunes_new_feed_url, None)
 
+    def test_itunes_type(self):
+        self.assertEqual(self.podcast.itunes_type, None)
+
     def test_language(self):
         self.assertEqual(self.podcast.language, None)
 
@@ -493,7 +499,6 @@ class Test_Missing_Info_Feed(unittest.TestCase):
 
     def test_ttl(self):
         self.assertEqual(self.podcast.ttl, None)
-
 
     def test_web_master(self):
         self.assertEqual(self.podcast.web_master, None)

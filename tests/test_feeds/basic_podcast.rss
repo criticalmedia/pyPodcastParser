@@ -37,6 +37,7 @@
         <itunes:category text="Health"/>
         <itunes:category text="News"/>
         <itunes:complete>yes</itunes:complete>
+        <itunes:type>episodic</itunes:type>
         <itunes:explicit>clean</itunes:explicit>
         <itunes:image href="https://github.com/jrigden/pyPodcastParser.jpg"/>
         <itunes:keywords>Python, Testing</itunes:keywords>
