@@ -44,6 +44,7 @@ setup(
 
     install_requires=[
         "beautifulsoup4",
+        "lxml"
     ],
 
     keywords=['podcast', 'parser', 'rss', 'feed'],
