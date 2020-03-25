@@ -229,14 +229,14 @@ class Item(object):
         """Parses the episode number and sets value"""
         try:
             self.itunes_episode = int(self.soup.find('itunes:episode').string)
-        except AttributeError:
+        except (AttributeError, TypeError):
             self.itunes_episode = None
 
     def set_itunes_season(self):
         """Parses the episode season and sets value"""
         try:
             self.itunes_season = int(self.soup.find('itunes:season').string)
-        except AttributeError:
+        except (AttributeError, TypeError):
             self.itunes_season = None
 
     def set_itunes_episode_type(self):
