@@ -143,6 +143,7 @@ class Podcast():
         podcast_dict['itunes_keywords'] = self.image_width
         podcast_dict['itunes_explicit'] = self.itunes_explicit
         podcast_dict['itunes_new_feed_url'] = self.itunes_new_feed_url
+        podcast_dict['itunes_type'] = self.itunes_type
         podcast_dict['language'] = self.language
         podcast_dict['last_build_date'] = self.last_build_date
         podcast_dict['link'] = self.link
