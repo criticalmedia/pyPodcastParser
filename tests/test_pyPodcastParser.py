@@ -188,6 +188,9 @@ class Test_Basic_Feed_Items(unittest.TestCase):
         self.assertEqual(self.podcast.items[0].title, "basic item title")
         self.assertEqual(self.podcast.items[1].title, "another basic item title")
 
+    def test_item_time_published(self):
+        self.assertEqual(self.podcast.items[0].time_published, 1206107460)
+        self.assertEqual(self.podcast.items[1].time_published, 1206107400)
 
 class Test_Basic_Feed(unittest.TestCase):
 
@@ -417,6 +420,9 @@ class Test_Missing_Info_Feed_Items(unittest.TestCase):
     def test_item_itunes_episode_type(self):
         self.assertEqual(self.podcast.items[0].itunes_season, None)
 
+    def test_item_time_published(self):
+        self.assertEqual(self.podcast.items[0].time_published, None)
+        self.assertEqual(self.podcast.items[1].time_published, None)
 
 class Test_Missing_Info_Feed(unittest.TestCase):
 
