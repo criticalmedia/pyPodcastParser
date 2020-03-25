@@ -73,6 +73,9 @@
             <itunes:order>2</itunes:order>
             <itunes:subtitle>The Subtitle</itunes:subtitle>
             <itunes:summary>The Summary</itunes:summary>
+            <itunes:season>0</itunes:season>
+            <itunes:episode>42</itunes:episode>
+            <itunes:episodeType>bonus</itunes:episodeType>
 
 
         </item>

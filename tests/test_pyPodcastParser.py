@@ -151,6 +151,15 @@ class Test_Basic_Feed_Items(unittest.TestCase):
         self.assertEqual(self.podcast.items[0].itunes_summary, "The Summary")
         self.assertEqual(self.podcast.items[1].itunes_summary, "Another Summary")
 
+    def test_item_itunes_season(self):
+        self.assertEqual(self.podcast.items[0].itunes_season, 0)
+
+    def test_item_itunes_episode(self):
+        self.assertEqual(self.podcast.items[0].itunes_episode, 42)
+
+    def test_item_itunes_episode_type(self):
+        self.assertEqual(self.podcast.items[0].itunes_episode_type, 'bonus')
+
     def test_item_enclosure_url(self):
         self.assertEqual(self.podcast.items[0].enclosure_url, 'https://github.com/jrigden/pyPodcastParser.mp3')
 
@@ -384,6 +393,26 @@ class Test_Unicode_Feed(unittest.TestCase):
     def test_web_master(self):
         self.assertEqual(self.podcast.web_master, self.unicodeish_text)
 
+
+class Test_Missing_Info_Feed_Items(unittest.TestCase):
+
+    def setUp(self):
+        test_dir = os.path.dirname(__file__)
+        test_feeds_dir = os.path.join(test_dir, 'test_feeds')
+        basic_podcast_path = os.path.join(test_feeds_dir, 'missing_info_podcast.rss')
+        basic_podcast_file = open(basic_podcast_path, "r")
+        self.basic_podcast = basic_podcast_file.read()
+        self.podcast = Podcast.Podcast(self.basic_podcast)
+
+
+    def test_item_itunes_season(self):
+        self.assertEqual(self.podcast.items[0].itunes_season, None)
+
+    def test_item_itunes_episode(self):
+        self.assertEqual(self.podcast.items[0].itunes_season, None)
+
+    def test_item_itunes_episode_type(self):
+        self.assertEqual(self.podcast.items[0].itunes_season, None)
 
 
 class Test_Missing_Info_Feed(unittest.TestCase):
