@@ -65,6 +65,7 @@ Podcast
 * itune_image (string): URL to itunes image
 * itunes_keywords (list): List of strings of itunes keywords
 * itunes_new_feed_url (string): The new url of this podcast
+* itunes_type (string): The type of podcast. Episodic or Serial
 * language (string): Language of feed
 * last_build_date (string): Last build date of this feed
 * link (string): URL to homepage
@@ -85,6 +86,7 @@ Item
 
 * author (string): The author of the item
 * comments (string): URL of comments
+* content_encoded (string): content:encoded field with markup for the item
 * creative_commons (string): creative commons license for this item
 * description (string): Description of the item.
 * enclosure_url (string): URL of enclosure
@@ -100,6 +102,10 @@ Item
 * itunes_order (string): Override published_date order
 * itunes_subtitle (string): The item subtitle
 * itunes_summary (string): The summary of the item
+* itunes_keywords (list): List of strings of the itunes:keywords field
+* itunes_season (int): Season number for the item
+* itunes_episode (int): Episode number for the item
+* itunes_episode_type (string): Type of episode (full, trailer, bonus, etc)
 * link (string): The URL of item.
 * published_date (string): Date item was published
 * title (string): The title of item.
