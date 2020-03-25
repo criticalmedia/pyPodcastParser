@@ -93,6 +93,8 @@ class Item(object):
         item['itunes_subtitle'] = self.itunes_subtitle
         item['itunes_summary'] = self.itunes_summary
         item['itunes_keywords'] = self.itunes_keywords
+        item['content_encoded'] = self.content_encoded
+        item['description'] = self.description
         item['link'] = self.link
         item['published_date'] = self.published_date
         item['title'] = self.title
@@ -105,6 +107,7 @@ class Item(object):
         self.set_comments()
         self.set_creative_commons()
         self.set_description()
+        self.set_content_encoded()
         self.set_enclosure()
         self.set_guid()
         self.set_link()
@@ -146,6 +149,13 @@ class Item(object):
             self.description = self.soup.find('description').string
         except AttributeError:
             self.description = None
+
+    def set_content_encoded(self):
+        """Parses content_encoded and set value."""
+        try:
+            self.content_encoded = self.soup.find('encoded').string.strip()
+        except AttributeError:
+            self.content_encoded = None
 
     def set_enclosure(self):
         """Parses enclosure_url, enclosure_type then set values."""

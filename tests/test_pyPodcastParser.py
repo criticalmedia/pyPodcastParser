@@ -180,6 +180,9 @@ class Test_Basic_Feed_Items(unittest.TestCase):
     def test_item_published_date(self):
         self.assertTrue(isinstance(self.podcast.items[1].date_time, datetime.datetime))
 
+    def test_content_encoded(self):
+        self.assertEqual(self.podcast.items[0].content_encoded, '<p>March 18, 2020</p>')
+        self.assertEqual(self.podcast.items[1].content_encoded, None)
 
     def test_item_title(self):
         self.assertEqual(self.podcast.items[0].title, "basic item title")
