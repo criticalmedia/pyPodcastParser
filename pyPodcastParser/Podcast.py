@@ -384,7 +384,11 @@ class Podcast():
     def set_link(self):
         """Parses link to homepage and set value"""
         try:
-            self.link = self.soup.link.string
+            for link in self.soup.find_all('link', rel=None):
+                if link is not None and link.string is not None:
+                    self.link = link.string
+                    return
+            self.link = None
         except AttributeError:
             self.link = None
 
