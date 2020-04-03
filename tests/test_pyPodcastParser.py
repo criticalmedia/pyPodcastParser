@@ -66,7 +66,6 @@ class Test_Basic_Feed_Item_Blocked(unittest.TestCase):
         self.assertEqual(self.podcast.items[0].itunes_explicit, "yes")
         self.assertEqual(self.podcast.items[1].itunes_explicit, "highly offensive")
 
-
 class Test_Basic_Feed_Items(unittest.TestCase):
 
     def setUp(self):
@@ -76,8 +75,6 @@ class Test_Basic_Feed_Items(unittest.TestCase):
         basic_podcast_file = open(basic_podcast_path, "r")
         self.basic_podcast = basic_podcast_file.read()
         self.podcast = Podcast.Podcast(self.basic_podcast)
-
-
 
     def test_item_count(self):
         number_of_items = len(self.podcast.items)
@@ -437,7 +434,6 @@ class Test_Missing_Info_Feed(unittest.TestCase):
     def test_loding_of_basic_podcast(self):
         self.assertIsNotNone(self.basic_podcast)
 
-
     def test_categories(self):
         self.assertFalse("Example category 2" in self.podcast.categories)
 
@@ -463,11 +459,8 @@ class Test_Missing_Info_Feed(unittest.TestCase):
         self.assertEqual(self.podcast.image_width, None)
         self.assertEqual(self.podcast.image_height, None)
 
-
     def test_itunes_author_name(self):
         self.assertEqual(self.podcast.itunes_author_name, None)
-
-
 
     def test_itunes_block(self):
         self.assertEqual(self.podcast.itunes_block, False)
@@ -560,6 +553,21 @@ class Test_Itunes_Block_Feed(unittest.TestCase):
 
     def test_itunes_explicit(self):
         self.assertEqual(self.podcast.itunes_explicit, "yes")
+
+class Test_Basic_Feed_Items_Generator(unittest.TestCase):
+    def setUp(self):
+        test_dir = os.path.dirname(__file__)
+        test_feeds_dir = os.path.join(test_dir, 'test_feeds')
+        basic_podcast_path = os.path.join(test_feeds_dir, 'basic_podcast.rss')
+        basic_podcast_file = open(basic_podcast_path, "r")
+        self.basic_podcast = basic_podcast_file.read()
+        self.podcast = Podcast.Podcast(self.basic_podcast, False)
+
+    def test_item_comments(self):
+        comments = ["http://comments.com/entry/0", "http://comments.com/entry/1"]
+        for index, item in enumerate(self.podcast.get_items(), start=0):
+            self.assertEqual(item.comments, comments[index])
+        self.assertEqual(index, len(comments)-1)
 
 if __name__ == '__main__':
     unittest.main()

@@ -68,11 +68,14 @@ class Podcast():
         date_time (datetime): When published
     """
 
-    def __init__(self, feed_content):
+    def __init__(self, feed_content, pre_set_items = True):
         #super(Podcast, self).__init__()
+        self.pre_set_items = pre_set_items
         self.feed_content = feed_content
         self.set_soup()
         self.set_full_soup()
+        if pre_set_items:
+            self.set_items()
 
         self.set_extended_elements()
         self.set_itunes()
@@ -110,7 +113,7 @@ class Podcast():
             self.is_valid_rss = False
 
     def set_is_valid_podcast(self):
-        for item in self.items:
+        for item in self.get_items():
             if item.enclosure_type:
                 if item.enclosure_type.lower() == "audio/mpeg":
                     self.is_valid_podcast = True
@@ -176,7 +179,6 @@ class Podcast():
         self.set_itunes_keywords()
         self.set_itunes_new_feed_url()
         self.set_itunes_categories()
-        self.set_items()
 
     def set_optional_elements(self):
         """Sets elements considered option by RSS spec"""
@@ -211,6 +213,19 @@ class Podcast():
     def set_full_soup(self):
         """Sets soup and keeps items"""
         self.full_soup = BeautifulSoup(self.feed_content, "xml")
+
+    def get_items(self):
+        if self.pre_set_items:
+            for item in self.items:
+                yield item
+        else:
+            self.items = []
+            full_soup_items = self.full_soup.findAll('item')
+            for full_soup_item in full_soup_items:
+                item = Item(full_soup_item)
+                if item:
+                    self.items.append(item)
+                    yield item
 
     def set_items(self):
         self.items = []
@@ -265,10 +280,7 @@ class Podcast():
 
     def set_image(self):
         """Parses image element and set values"""
-        temp_soup = self.full_soup
-        for item in temp_soup.findAll('item'):
-            item.decompose()
-        image = temp_soup.find('image')
+        image = self.full_soup.find('image')
         try:
             self.image_title = image.find('title').string
         except AttributeError:
