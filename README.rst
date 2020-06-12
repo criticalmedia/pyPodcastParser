@@ -93,6 +93,7 @@ Item
 * enclosure_type (string): File MIME type
 * enclosure_length (integer): File size in bytes
 * guid (string): globally unique identifier
+* itunes_title (string): Title given to iTunes
 * itunes_author_name (string): Author name given to iTunes
 * itunes_block (boolean): It this Item blocked from itunes
 * itunes_closed_captioned: (string): It is this item have closed captions

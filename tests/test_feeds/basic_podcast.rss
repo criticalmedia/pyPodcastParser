@@ -64,6 +64,7 @@
 
             <enclosure length="123456" url="https://github.com/jrigden/pyPodcastParser.mp3" type="audio/mpeg"/>
 
+            <itunes:title>basic itunes title</itunes:title>
             <itunes:author>basic item itunes author</itunes:author>
             <itunes:isClosedCaptioned>yes</itunes:isClosedCaptioned>
             <itunes:duration>1:05</itunes:duration>

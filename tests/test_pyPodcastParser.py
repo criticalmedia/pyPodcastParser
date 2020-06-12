@@ -105,6 +105,10 @@ class Test_Basic_Feed_Items(unittest.TestCase):
         self.assertEqual(self.podcast.items[0].description, "basic item description")
         self.assertEqual(self.podcast.items[1].description, "another basic item description")
 
+    def test_item_itunes_title(self):
+        self.assertEqual(self.podcast.items[0].itunes_title, "basic itunes title")
+        self.assertEqual(self.podcast.items[1].itunes_title, None)
+
     def test_item_author(self):
         self.assertEqual(self.podcast.items[0].author, "lawyer@boyer.net")
         self.assertEqual(self.podcast.items[1].author, "lawyer@boyer.net (Lawyer Boyer)")
