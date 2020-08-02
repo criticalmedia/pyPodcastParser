@@ -416,10 +416,12 @@ class Test_Missing_Info_Feed_Items(unittest.TestCase):
         self.assertEqual(self.podcast.items[0].itunes_season, None)
 
     def test_item_itunes_episode(self):
-        self.assertEqual(self.podcast.items[0].itunes_season, None)
+        self.assertEqual(self.podcast.items[0].itunes_episode, None)
+        self.assertEqual(self.podcast.items[1].itunes_episode, None)
 
     def test_item_itunes_episode_type(self):
-        self.assertEqual(self.podcast.items[0].itunes_season, None)
+        self.assertEqual(self.podcast.items[0].itunes_episode_type, None)
+        self.assertEqual(self.podcast.items[1].itunes_episode_type, None)
 
     def test_item_time_published(self):
         self.assertEqual(self.podcast.items[0].time_published, None)
@@ -572,6 +574,24 @@ class Test_Basic_Feed_Items_Generator(unittest.TestCase):
         for index, item in enumerate(self.podcast.get_items(), start=0):
             self.assertEqual(item.comments, comments[index])
         self.assertEqual(index, len(comments)-1)
+
+class Test_Invalid_Feed_Items(unittest.TestCase):
+    def setUp(self):
+        test_dir = os.path.dirname(__file__)
+        test_feeds_dir = os.path.join(test_dir, 'test_feeds')
+        basic_podcast_path = os.path.join(test_feeds_dir, 'invalid_podcast.rss')
+        basic_podcast_file = open(basic_podcast_path, "r")
+        self.basic_podcast = basic_podcast_file.read()
+        self.podcast = Podcast.Podcast(self.basic_podcast)
+
+    def test_item_itunes_season(self):
+        self.assertEqual(self.podcast.items[0].itunes_season, None)
+
+    def test_item_itunes_episode(self):
+        self.assertEqual(self.podcast.items[0].itunes_episode, None)
+
+    def test_item_itunes_episode_type(self):
+        self.assertEqual(self.podcast.items[0].itunes_episode_type, None)
 
 if __name__ == '__main__':
     unittest.main()

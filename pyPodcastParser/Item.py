@@ -25,6 +25,9 @@ class Item(object):
         guid (str): globally unique identifier
         itunes_title (str): Title name given to iTunes
         itunes_author_name (str): Author name given to iTunes
+        itunes_season (int): Season number given to iTunes
+        itunes_episode (int): Episode number given to iTunes
+        itunes_episode_type (str): Episode type given to iTunes
         itunes_block (bool): It this Item blocked from itunes
         itunes_closed_captioned: (str): It is this item have closed captions
         itunes_duration (str): Duration of enclosure
@@ -239,14 +242,14 @@ class Item(object):
         """Parses the episode number and sets value"""
         try:
             self.itunes_episode = int(self.soup.find('itunes:episode').string)
-        except (AttributeError, TypeError):
+        except:
             self.itunes_episode = None
 
     def set_itunes_season(self):
         """Parses the episode season and sets value"""
         try:
             self.itunes_season = int(self.soup.find('itunes:season').string)
-        except (AttributeError, TypeError):
+        except:
             self.itunes_season = None
 
     def set_itunes_episode_type(self):
