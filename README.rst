@@ -163,15 +163,6 @@ Docs
 http://pypodcastparser.readthedocs.org/en/latest/
 
 *******
-Testing
-*******
-
-.. image:: https://travis-ci.org/jrigden/pyPodcastParser.svg?branch=master
-    :target: https://travis-ci.org/jrigden/pyPodcastParser
-.. image:: https://coveralls.io/repos/github/jrigden/pyPodcastParser/badge.svg?branch=master
-    :target: https://coveralls.io/github/jrigden/pyPodcastParser?branch=master
-
-*******
 License
 *******
 
@@ -183,15 +174,15 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-.. |coverall| image:: https://coveralls.io/repos/github/jrigden/pyPodcastParser/badge.svg?branch=master
+.. |coverall| image:: https://coveralls.io/repos/github/criticalmedia/pyPodcastParser/badge.svg?branch=master
     :alt: Test Status
     :scale: 100%
-    :target: https://coveralls.io/github/jrigden/pyPodcastParser?branch=master
+    :target: https://coveralls.io/github/criticalmedia/pyPodcastParser?branch=master
 
-.. |codacy| image:: https://img.shields.io/codacy/6f81796c588f455f85c631d8e47b46fc.svg?style=flat-square
+.. |codacy| image:: https://app.codacy.com/project/badge/Grade/dd6ec457bb6b4d709d69b34da14511fa
     :alt: Codacy Grade
     :scale: 100%
-    :target: https://www.codacy.com/app/jasonrigden/pyPodcastParser/dashboard
+    :target: https://www.codacy.com/gh/criticalmedia/pyPodcastParser
 
 .. |docs| image:: https://readthedocs.org/projects/docs/badge/?version=latest
     :alt: Documentation Status
@@ -213,10 +204,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     :scale: 100%
     :target: https://pypi.python.org/pypi/pyPodcastParser
 
-.. |testing| image:: https://travis-ci.org/jrigden/pyPodcastParser.svg?branch=master
+.. |testing| image:: https://travis-ci.org/criticalmedia/pyPodcastParser.svg?branch=master
     :alt: Test Status
     :scale: 100%
-    :target: https://travis-ci.org/jrigden/pyPodcastParser
+    :target: https://travis-ci.org/criticalmedia/pyPodcastParser
 
 .. |twitter| image:: https://img.shields.io/twitter/follow/mr_rigden.svg?style=social
     :alt: @mr_rigden
