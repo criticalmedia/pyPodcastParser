@@ -91,6 +91,9 @@ class Podcast():
             self.time_published = None
             return
         time_tuple = email.utils.parsedate_tz(self.published_date)
+        if time_tuple is None:
+            self.time_published = None
+            return
         self.time_published = email.utils.mktime_tz(time_tuple)
 
     def set_dates_published(self):
@@ -98,6 +101,9 @@ class Podcast():
             self.date_time = None
         else:
             time_tuple = email.utils.parsedate(self.published_date)
+            if time_tuple is None:
+                self.date_time = None
+                return
             temp_datetime = datetime(time_tuple[0], time_tuple[1], time_tuple[2])
             self.date_time = temp_datetime
 

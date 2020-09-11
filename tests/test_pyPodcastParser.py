@@ -288,6 +288,9 @@ class Test_Basic_Feed(unittest.TestCase):
         self.assertEqual(self.podcast.published_date,
                          "Mon, 24 Mar 2008 23:30:07 GMT")
 
+    def test_pub_date(self):
+        self.assertEqual(self.podcast.time_published, 1206401407)
+
     def test_pubsubhubbub(self):
         self.assertEqual(self.podcast.pubsubhubbub, "https://pubsubhubbub.appspot.com")
 
@@ -592,6 +595,21 @@ class Test_Invalid_Feed_Items(unittest.TestCase):
 
     def test_item_itunes_episode_type(self):
         self.assertEqual(self.podcast.items[0].itunes_episode_type, None)
+
+class Test_Invalid_Feed(unittest.TestCase):
+    def setUp(self):
+        test_dir = os.path.dirname(__file__)
+        test_feeds_dir = os.path.join(test_dir, 'test_feeds')
+        basic_podcast_path = os.path.join(test_feeds_dir, 'invalid_podcast.rss')
+        basic_podcast_file = open(basic_podcast_path, "r")
+        self.basic_podcast = basic_podcast_file.read()
+        self.podcast = Podcast.Podcast(self.basic_podcast, False)
+
+    def test_pub_date(self):
+        self.assertEqual(self.podcast.time_published, None)
+
+    def test_time_published(self):
+        self.assertEqual(self.podcast.published_date, 'Mon, 24 Mar 2008')
 
 if __name__ == '__main__':
     unittest.main()
