@@ -2,7 +2,7 @@ language: python
 addons:
   apt:
     packages:
-      - lxml
+      - libxml2
 
 python:
   - "3.5"
