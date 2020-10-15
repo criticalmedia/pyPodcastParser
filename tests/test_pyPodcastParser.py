@@ -78,11 +78,12 @@ class Test_Basic_Feed_Items(unittest.TestCase):
 
     def test_item_count(self):
         number_of_items = len(self.podcast.items)
-        self.assertEqual(number_of_items, 2)
+        self.assertEqual(number_of_items, 3)
 
     def test_item_comments(self):
         self.assertEqual(self.podcast.items[0].comments, "http://comments.com/entry/0")
         self.assertEqual(self.podcast.items[1].comments, "http://comments.com/entry/1")
+        self.assertEqual(self.podcast.items[2].comments, "http://comments.com/entry/2")
 
     def test_item_creative_commons(self):
         self.assertEqual(self.podcast.items[0].creative_commons, "http://www.creativecommons.org/licenses/by-nc/1.0")
@@ -91,6 +92,7 @@ class Test_Basic_Feed_Items(unittest.TestCase):
     def test_item_categories(self):
         self.assertTrue("Grateful Dead" in self.podcast.items[0].categories)
         self.assertTrue("Dead and Grateful" in self.podcast.items[1].categories)
+        self.assertTrue("Dead and Grateful" in self.podcast.items[2].categories)
 
     def test_item_multi_categories(self):
         self.assertTrue("Grateful Dead" in self.podcast.items[0].categories)
@@ -104,18 +106,22 @@ class Test_Basic_Feed_Items(unittest.TestCase):
     def test_item_description(self):
         self.assertEqual(self.podcast.items[0].description, "basic item description")
         self.assertEqual(self.podcast.items[1].description, "another basic item description")
+        self.assertEqual(self.podcast.items[2].description, "another basic item description")
 
     def test_item_itunes_title(self):
         self.assertEqual(self.podcast.items[0].itunes_title, "basic itunes title")
         self.assertEqual(self.podcast.items[1].itunes_title, None)
+        self.assertEqual(self.podcast.items[2].itunes_title, "A title with lots of whitespace")
 
     def test_item_author(self):
         self.assertEqual(self.podcast.items[0].author, "lawyer@boyer.net")
         self.assertEqual(self.podcast.items[1].author, "lawyer@boyer.net (Lawyer Boyer)")
+        self.assertEqual(self.podcast.items[2].author, "lawyer@boyer.net (Lawyer Boyer)")
 
     def test_item_itunes_author(self):
         self.assertEqual(self.podcast.items[0].itunes_author_name, "basic item itunes author")
         self.assertEqual(self.podcast.items[1].itunes_author_name, "another basic item itunes author")
+        self.assertEqual(self.podcast.items[2].itunes_author_name, "another basic item itunes author")
 
     def test_item_itunes_block(self):
         self.assertEqual(self.podcast.itunes_block, False)
@@ -123,6 +129,7 @@ class Test_Basic_Feed_Items(unittest.TestCase):
     def test_item_itunes_duration(self):
         self.assertEqual(self.podcast.items[0].itunes_duration, "1:05")
         self.assertEqual(self.podcast.items[1].itunes_duration, "1:11:05")
+        self.assertEqual(self.podcast.items[2].itunes_duration, "1:11:05")
 
     def test_item_itunes_closed_captioned(self):
         self.assertEqual(self.podcast.items[0].itunes_closed_captioned, "yes")
@@ -131,10 +138,12 @@ class Test_Basic_Feed_Items(unittest.TestCase):
     def test_item_itunes_explicit(self):
         self.assertEqual(self.podcast.items[0].itunes_explicit, "no")
         self.assertEqual(self.podcast.items[1].itunes_explicit, "clean")
+        self.assertEqual(self.podcast.items[2].itunes_explicit, "clean")
 
     def test_item_itunes_image(self):
         self.assertEqual(self.podcast.items[0].itune_image, "http://poo.poo/gif.jpg")
         self.assertEqual(self.podcast.items[1].itune_image, "http://poo.poo/gif.jpg")
+        self.assertEqual(self.podcast.items[2].itune_image, "http://poo.poo/gif.jpg")
 
     def test_item_itunes_keywords(self):
         self.assertEqual(self.podcast.items[0].itunes_keywords, ['One keyword', 'a second keyword', '3rd keyword'])
@@ -143,14 +152,17 @@ class Test_Basic_Feed_Items(unittest.TestCase):
     def test_item_itunes_order(self):
         self.assertEqual(self.podcast.items[0].itunes_order, "2")
         self.assertEqual(self.podcast.items[1].itunes_order, "1")
+        self.assertEqual(self.podcast.items[2].itunes_order, "1")
 
     def test_item_itunes_subtitle(self):
         self.assertEqual(self.podcast.items[0].itunes_subtitle, "The Subtitle")
         self.assertEqual(self.podcast.items[1].itunes_subtitle, "Another Subtitle")
+        self.assertEqual(self.podcast.items[2].itunes_subtitle, "Subtitle with whitespace")
 
     def test_item_itunes_summary(self):
         self.assertEqual(self.podcast.items[0].itunes_summary, "The Summary")
         self.assertEqual(self.podcast.items[1].itunes_summary, "Another Summary")
+        self.assertEqual(self.podcast.items[2].itunes_summary, "Summary with whitespace")
 
     def test_item_itunes_season(self):
         self.assertEqual(self.podcast.items[0].itunes_season, 0)
@@ -173,13 +185,16 @@ class Test_Basic_Feed_Items(unittest.TestCase):
     def test_item_guid(self):
         self.assertEqual(self.podcast.items[0].guid, 'basic item guid')
         self.assertEqual(self.podcast.items[1].guid, 'another basic item guid')
+        self.assertEqual(self.podcast.items[2].guid, 'another basic item guid')
 
     def test_item_link(self):
         self.assertEqual(self.podcast.items[0].link, "http://google.com/0")
         self.assertEqual(self.podcast.items[1].link, "http://google.com/1")
+        self.assertEqual(self.podcast.items[2].link, "http://google.com/2")
 
     def test_item_published_date(self):
         self.assertTrue(isinstance(self.podcast.items[1].date_time, datetime.datetime))
+        self.assertTrue(isinstance(self.podcast.items[2].date_time, datetime.datetime))
 
     def test_content_encoded(self):
         self.assertEqual(self.podcast.items[0].content_encoded, '<p>March 18, 2020</p>')
@@ -188,10 +203,12 @@ class Test_Basic_Feed_Items(unittest.TestCase):
     def test_item_title(self):
         self.assertEqual(self.podcast.items[0].title, "basic item title")
         self.assertEqual(self.podcast.items[1].title, "another basic item title")
+        self.assertEqual(self.podcast.items[2].title, "A title with lots of whitespace")
 
     def test_item_time_published(self):
         self.assertEqual(self.podcast.items[0].time_published, 1206107460)
         self.assertEqual(self.podcast.items[1].time_published, 1206107400)
+        self.assertEqual(self.podcast.items[2].time_published, 1206107400)
 
 class Test_Basic_Feed(unittest.TestCase):
 
@@ -573,7 +590,11 @@ class Test_Basic_Feed_Items_Generator(unittest.TestCase):
         self.podcast = Podcast.Podcast(self.basic_podcast, False)
 
     def test_item_comments(self):
-        comments = ["http://comments.com/entry/0", "http://comments.com/entry/1"]
+        comments = [
+          "http://comments.com/entry/0",
+          "http://comments.com/entry/1",
+          "http://comments.com/entry/2"
+        ]
         for index, item in enumerate(self.podcast.get_items(), start=0):
             self.assertEqual(item.comments, comments[index])
         self.assertEqual(index, len(comments)-1)

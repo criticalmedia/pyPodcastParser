@@ -108,5 +108,45 @@
             <itunes:summary>Another Summary</itunes:summary>
 
         </item>
+        <item>
+            <author>            lawyer@boyer.net (Lawyer Boyer)      </author>
+            <category>        Dead and Grateful    </category>
+            <category>        News      </category>
+            <description>
+
+
+              another basic item description
+            </description>
+            <guid isPermaLink="true">        another basic item guid        </guid>
+            <link>http://google.com/2</link>
+            <pubDate>    Fri, 21 Mar 2008 09:50:00 EDT    </pubDate>
+            <enclosure length="123456" url="https://github.com/jrigden/pyPodcastParser.mp3" type="audio/mpeg"/>
+
+            <itunes:author>       
+              another basic item itunes author</itunes:author>
+            <itunes:duration>   1:11:05    </itunes:duration>
+            <itunes:explicit>   clean    </itunes:explicit>
+            <itunes:image href="http://poo.poo/gif.jpg"/>
+            <itunes:keywords/>
+            <itunes:order>  
+        			1    
+            </itunes:order>
+            <itunes:subtitle>     
+              Subtitle with whitespace
+            </itunes:subtitle>
+            <itunes:summary>  
+              Summary with whitespace     
+            </itunes:summary>
+            <comments>  
+              http://comments.com/entry/2
+            </comments>
+            <description>another basic item description</description>
+            <itunes:title>  
+              A title with lots of whitespace
+            </itunes:title>
+            <title> 
+              A title with lots of whitespace
+            </title>
+        </item>
      </channel>
 </rss>
