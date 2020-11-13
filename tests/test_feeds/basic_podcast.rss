@@ -152,7 +152,7 @@
             <author>            lawyer@boyer.net (Lawyer Boyer)      </author>
             <category>        Dead and Grateful    </category>
             <category>        News      </category>
-            <description><![CDATA[<a href="https://foo.bar">another basic item description</a>]]></description>
+            <description><![CDATA[this is <a href="https://foo.bar">another basic item description</a>]]></description>
             <guid isPermaLink="true">        another basic item guid        </guid>
             <link>http://google.com/2</link>
             <pubDate>    Fri, 21 Mar 2008 09:50:00 EDT    </pubDate>

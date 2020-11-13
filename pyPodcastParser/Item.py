@@ -165,12 +165,12 @@ class Item(object):
         try:
             description = self.soup.find('description')
             self.description = description.string.strip()
-            description_soup = BeautifulSoup(self.description, "xml")
-            self.description_text = description_soup.get_text(" ", strip=True)
-            if self.description_text == '':
-                self.description_text = self.description
         except AttributeError:
             self.description = None
+        try:
+            description_soup = BeautifulSoup(self.description, "html.parser")
+            self.description_text = description_soup.get_text(" ", strip=True)
+        except:
             self.description_text = None
 
     def set_content_encoded(self):
@@ -222,12 +222,12 @@ class Item(object):
         try:
             title = self.soup.find('title')
             self.title = title.string.strip()
-            title_soup = BeautifulSoup(self.title, "xml")
-            self.title_text = title_soup.get_text(" ", strip=True)
-            if self.title_text == '':
-                self.title_text = self.title
         except AttributeError:
             self.title = None
+        try:
+            title_soup = BeautifulSoup(self.title, "html.parser")
+            self.title_text = title_soup.get_text(" ", strip=True)
+        except:
             self.title_text = None
 
     def set_itunes_element(self):
@@ -252,12 +252,12 @@ class Item(object):
         try:
             title = self.soup.find('itunes:title')
             self.itunes_title = title.string.strip()
-            title_soup = BeautifulSoup(self.itunes_title, "xml")
-            self.itunes_title_text = title_soup.get_text(" ", strip=True)
-            if self.itunes_title_text == '':
-                self.itunes_title_text = self.itunes_title
         except AttributeError:
             self.itunes_title = None
+        try:
+            title_soup = BeautifulSoup(self.itunes_title, "html.parser")
+            self.itunes_title_text = title_soup.get_text(" ", strip=True)
+        except:
             self.itunes_title_text = None
 
     def set_itunes_author_name(self):
@@ -343,12 +343,12 @@ class Item(object):
         try:
             subtitle = self.soup.find('itunes:subtitle')
             self.itunes_subtitle = subtitle.string.strip()
-            subtitle_soup = BeautifulSoup(self.itunes_subtitle, "xml")
-            self.itunes_subtitle_text = subtitle_soup.get_text(" ", strip=True)
-            if self.itunes_subtitle_text == '':
-                self.itunes_subtitle_text = self.itunes_subtitle
         except AttributeError:
             self.itunes_subtitle = None
+        try:
+            subtitle_soup = BeautifulSoup(self.itunes_subtitle, "html.parser")
+            self.itunes_subtitle_text = subtitle_soup.get_text(" ", strip=True)
+        except:
             self.itunes_subtitle_text = None
 
     def set_itunes_summary(self):
@@ -356,12 +356,12 @@ class Item(object):
         try:
             summary = self.soup.find('itunes:summary')
             self.itunes_summary = summary.string.strip()
-            summary_soup = BeautifulSoup(self.itunes_summary, "xml")
-            self.itunes_summary_text = summary_soup.get_text(" ", strip=True)
-            if self.itunes_summary_text == '':
-                self.itunes_summary_text = self.itunes_summary
         except AttributeError:
             self.itunes_summary = None
+        try:
+            summary_soup = BeautifulSoup(self.itunes_summary, "html.parser")
+            self.itunes_summary_text = summary_soup.get_text(" ", strip=True)
+        except:
             self.itunes_summary_text = None
 
     def set_itunes_keywords(self):

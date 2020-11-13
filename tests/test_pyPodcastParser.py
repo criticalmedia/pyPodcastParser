@@ -107,13 +107,13 @@ class Test_Basic_Feed_Items(unittest.TestCase):
         self.assertEqual(self.podcast.items[0].description, "basic item description")
         self.assertEqual(self.podcast.items[1].description, "another basic item description")
         self.assertEqual(self.podcast.items[2].description, "another basic item description")
-        self.assertEqual(self.podcast.items[3].description, '<a href="https://foo.bar">another basic item description</a>')
+        self.assertEqual(self.podcast.items[3].description, 'this is <a href="https://foo.bar">another basic item description</a>')
 
     def test_item_description_text(self):
         self.assertEqual(self.podcast.items[0].description_text, "basic item description")
         self.assertEqual(self.podcast.items[1].description_text, "another basic item description")
         self.assertEqual(self.podcast.items[2].description_text, "another basic item description")
-        self.assertEqual(self.podcast.items[3].description_text, "another basic item description")
+        self.assertEqual(self.podcast.items[3].description_text, "this is another basic item description")
 
     def test_item_itunes_title(self):
         self.assertEqual(self.podcast.items[0].itunes_title, "basic itunes title")
