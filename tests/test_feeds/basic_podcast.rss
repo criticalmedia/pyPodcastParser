@@ -148,5 +148,32 @@
               A title with lots of whitespace
             </title>
         </item>
+        <item>
+            <author>            lawyer@boyer.net (Lawyer Boyer)      </author>
+            <category>        Dead and Grateful    </category>
+            <category>        News      </category>
+            <description><![CDATA[<a href="https://foo.bar">another basic item description</a>]]></description>
+            <guid isPermaLink="true">        another basic item guid        </guid>
+            <link>http://google.com/2</link>
+            <pubDate>    Fri, 21 Mar 2008 09:50:00 EDT    </pubDate>
+            <enclosure length="123456" url="https://github.com/jrigden/pyPodcastParser.mp3" type="audio/mpeg"/>
+
+            <itunes:author>       
+              another basic item itunes author</itunes:author>
+            <itunes:duration>   1:11:05    </itunes:duration>
+            <itunes:explicit>   clean    </itunes:explicit>
+            <itunes:image href="http://poo.poo/gif.jpg"/>
+            <itunes:keywords/>
+            <itunes:order>  
+        			1    
+            </itunes:order>
+            <itunes:subtitle><![CDATA[<a href="https://foo.bar">Subtitle with html</a>]]></itunes:subtitle>
+            <itunes:summary><![CDATA[<div><div><table><tr><th>Summary with html</th><th>In a table</th></tr></table></div></div>]]></itunes:summary>
+            <comments>  
+              http://comments.com/entry/3
+            </comments>
+            <itunes:title><![CDATA[<h1>A title with html</h1>]]></itunes:title>
+            <title><![CDATA[<h1>A title with html</h1>]]></title>
+        </item>
      </channel>
 </rss>

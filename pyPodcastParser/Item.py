@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 from datetime import datetime
 import email.utils
 from time import mktime
@@ -19,11 +20,13 @@ class Item(object):
         comments (str): URL of comments
         creative_commons (str): creative commons license for this item
         description (str): Description of the item.
+        description_text (str): Description of the item without html tags.
         enclosure_url (str): URL of enclosure
         enclosure_type (str): File MIME type
         enclosure_length (int): File size in bytes
         guid (str): globally unique identifier
         itunes_title (str): Title name given to iTunes
+        itunes_title_text (str): Title name given to iTunes without html tags
         itunes_author_name (str): Author name given to iTunes
         itunes_season (int): Season number given to iTunes
         itunes_episode (int): Episode number given to iTunes
@@ -35,11 +38,14 @@ class Item(object):
         itune_image (str): URL of item cover art
         itunes_order (str): Override published_date order
         itunes_subtitle (str): The item subtitle
+        itunes_subtitle_text (str): The item subtitle without html tags
         itunes_summary (str): The summary of the item
+        itunes_summary_text (str): The summary of the item without html tags
         itunes_keywords (list): List of strings for keywords
         link (str): The URL of item.
         published_date (str): Date item was published
         title (str): The title of item.
+        title_text (str): The title of item without html tags.
         date_time (datetime): When published
     """
 
@@ -86,6 +92,7 @@ class Item(object):
         item['enclosure_type'] = self.enclosure_type
         item['guid'] = self.guid
         item['itunes_title'] = self.itunes_title
+        item['itunes_title_text'] = self.itunes_title_text
         item['itunes_author_name'] = self.itunes_author_name
         item['itunes_block'] = self.itunes_block
         item['itunes_closed_captioned'] = self.itunes_closed_captioned
@@ -97,13 +104,17 @@ class Item(object):
         item['itune_image'] = self.itune_image
         item['itunes_order'] = self.itunes_order
         item['itunes_subtitle'] = self.itunes_subtitle
+        item['itunes_subtitle_text'] = self.itunes_subtitle_text
         item['itunes_summary'] = self.itunes_summary
+        item['itunes_summary_text'] = self.itunes_summary_text
         item['itunes_keywords'] = self.itunes_keywords
         item['content_encoded'] = self.content_encoded
         item['description'] = self.description
+        item['description_text'] = self.description_text
         item['link'] = self.link
         item['published_date'] = self.published_date
         item['title'] = self.title
+        item['title_text'] = self.title_text
         return item
 
     def set_rss_element(self):
@@ -152,9 +163,15 @@ class Item(object):
     def set_description(self):
         """Parses description and set value."""
         try:
-            self.description = self.soup.find('description').string.strip()
+            description = self.soup.find('description')
+            self.description = description.string.strip()
+            description_soup = BeautifulSoup(self.description, "xml")
+            self.description_text = description_soup.get_text(" ", strip=True)
+            if self.description_text == '':
+                self.description_text = self.description
         except AttributeError:
             self.description = None
+            self.description_text = None
 
     def set_content_encoded(self):
         """Parses content_encoded and set value."""
@@ -203,9 +220,15 @@ class Item(object):
     def set_title(self):
         """Parses title and set value."""
         try:
-            self.title = self.soup.find('title').string.strip()
+            title = self.soup.find('title')
+            self.title = title.string.strip()
+            title_soup = BeautifulSoup(self.title, "xml")
+            self.title_text = title_soup.get_text(" ", strip=True)
+            if self.title_text == '':
+                self.title_text = self.title
         except AttributeError:
             self.title = None
+            self.title_text = None
 
     def set_itunes_element(self):
         """Set each of the itunes elements."""
@@ -227,9 +250,15 @@ class Item(object):
     def set_itunes_title(self):
         """Parses title from itunes tags and sets value"""
         try:
-            self.itunes_title = self.soup.find('itunes:title').string.strip()
+            title = self.soup.find('itunes:title')
+            self.itunes_title = title.string.strip()
+            title_soup = BeautifulSoup(self.itunes_title, "xml")
+            self.itunes_title_text = title_soup.get_text(" ", strip=True)
+            if self.itunes_title_text == '':
+                self.itunes_title_text = self.itunes_title
         except AttributeError:
             self.itunes_title = None
+            self.itunes_title_text = None
 
     def set_itunes_author_name(self):
         """Parses author name from itunes tags and sets value"""
@@ -312,16 +341,28 @@ class Item(object):
     def set_itunes_subtitle(self):
         """Parses subtitle from itunes tags and sets value"""
         try:
-            self.itunes_subtitle = self.soup.find('itunes:subtitle').string.strip()
+            subtitle = self.soup.find('itunes:subtitle')
+            self.itunes_subtitle = subtitle.string.strip()
+            subtitle_soup = BeautifulSoup(self.itunes_subtitle, "xml")
+            self.itunes_subtitle_text = subtitle_soup.get_text(" ", strip=True)
+            if self.itunes_subtitle_text == '':
+                self.itunes_subtitle_text = self.itunes_subtitle
         except AttributeError:
             self.itunes_subtitle = None
+            self.itunes_subtitle_text = None
 
     def set_itunes_summary(self):
         """Parses summary from itunes tags and sets value"""
         try:
-            self.itunes_summary = self.soup.find('itunes:summary').string.strip()
+            summary = self.soup.find('itunes:summary')
+            self.itunes_summary = summary.string.strip()
+            summary_soup = BeautifulSoup(self.itunes_summary, "xml")
+            self.itunes_summary_text = summary_soup.get_text(" ", strip=True)
+            if self.itunes_summary_text == '':
+                self.itunes_summary_text = self.itunes_summary
         except AttributeError:
             self.itunes_summary = None
+            self.itunes_summary_text = None
 
     def set_itunes_keywords(self):
         """ Parse keywrods from itunes tags and set value"""

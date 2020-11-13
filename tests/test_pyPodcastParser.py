@@ -78,7 +78,7 @@ class Test_Basic_Feed_Items(unittest.TestCase):
 
     def test_item_count(self):
         number_of_items = len(self.podcast.items)
-        self.assertEqual(number_of_items, 3)
+        self.assertEqual(number_of_items, 4)
 
     def test_item_comments(self):
         self.assertEqual(self.podcast.items[0].comments, "http://comments.com/entry/0")
@@ -107,11 +107,25 @@ class Test_Basic_Feed_Items(unittest.TestCase):
         self.assertEqual(self.podcast.items[0].description, "basic item description")
         self.assertEqual(self.podcast.items[1].description, "another basic item description")
         self.assertEqual(self.podcast.items[2].description, "another basic item description")
+        self.assertEqual(self.podcast.items[3].description, '<a href="https://foo.bar">another basic item description</a>')
+
+    def test_item_description_text(self):
+        self.assertEqual(self.podcast.items[0].description_text, "basic item description")
+        self.assertEqual(self.podcast.items[1].description_text, "another basic item description")
+        self.assertEqual(self.podcast.items[2].description_text, "another basic item description")
+        self.assertEqual(self.podcast.items[3].description_text, "another basic item description")
 
     def test_item_itunes_title(self):
         self.assertEqual(self.podcast.items[0].itunes_title, "basic itunes title")
         self.assertEqual(self.podcast.items[1].itunes_title, None)
         self.assertEqual(self.podcast.items[2].itunes_title, "A title with lots of whitespace")
+        self.assertEqual(self.podcast.items[3].itunes_title, "<h1>A title with html</h1>")
+
+    def test_item_itunes_title_text(self):
+        self.assertEqual(self.podcast.items[0].itunes_title_text, "basic itunes title")
+        self.assertEqual(self.podcast.items[1].itunes_title_text, None)
+        self.assertEqual(self.podcast.items[2].itunes_title_text, "A title with lots of whitespace")
+        self.assertEqual(self.podcast.items[3].itunes_title_text, "A title with html")
 
     def test_item_author(self):
         self.assertEqual(self.podcast.items[0].author, "lawyer@boyer.net")
@@ -158,11 +172,25 @@ class Test_Basic_Feed_Items(unittest.TestCase):
         self.assertEqual(self.podcast.items[0].itunes_subtitle, "The Subtitle")
         self.assertEqual(self.podcast.items[1].itunes_subtitle, "Another Subtitle")
         self.assertEqual(self.podcast.items[2].itunes_subtitle, "Subtitle with whitespace")
+        self.assertEqual(self.podcast.items[3].itunes_subtitle, '<a href="https://foo.bar">Subtitle with html</a>')
+
+    def test_item_itunes_subtitle_text(self):
+        self.assertEqual(self.podcast.items[0].itunes_subtitle_text, "The Subtitle")
+        self.assertEqual(self.podcast.items[1].itunes_subtitle_text, "Another Subtitle")
+        self.assertEqual(self.podcast.items[2].itunes_subtitle_text, "Subtitle with whitespace")
+        self.assertEqual(self.podcast.items[3].itunes_subtitle_text, "Subtitle with html")
 
     def test_item_itunes_summary(self):
         self.assertEqual(self.podcast.items[0].itunes_summary, "The Summary")
         self.assertEqual(self.podcast.items[1].itunes_summary, "Another Summary")
         self.assertEqual(self.podcast.items[2].itunes_summary, "Summary with whitespace")
+        self.assertEqual(self.podcast.items[3].itunes_summary, "<div><div><table><tr><th>Summary with html</th><th>In a table</th></tr></table></div></div>")
+
+    def test_item_itunes_summary_text(self):
+        self.assertEqual(self.podcast.items[0].itunes_summary_text, "The Summary")
+        self.assertEqual(self.podcast.items[1].itunes_summary_text, "Another Summary")
+        self.assertEqual(self.podcast.items[2].itunes_summary_text, "Summary with whitespace")
+        self.assertEqual(self.podcast.items[3].itunes_summary_text, "Summary with html In a table")
 
     def test_item_itunes_season(self):
         self.assertEqual(self.podcast.items[0].itunes_season, 0)
@@ -204,6 +232,13 @@ class Test_Basic_Feed_Items(unittest.TestCase):
         self.assertEqual(self.podcast.items[0].title, "basic item title")
         self.assertEqual(self.podcast.items[1].title, "another basic item title")
         self.assertEqual(self.podcast.items[2].title, "A title with lots of whitespace")
+        self.assertEqual(self.podcast.items[3].title, "<h1>A title with html</h1>")
+
+    def test_item_title_text(self):
+        self.assertEqual(self.podcast.items[0].title_text, "basic item title")
+        self.assertEqual(self.podcast.items[1].title_text, "another basic item title")
+        self.assertEqual(self.podcast.items[2].title_text, "A title with lots of whitespace")
+        self.assertEqual(self.podcast.items[3].title_text, "A title with html")
 
     def test_item_time_published(self):
         self.assertEqual(self.podcast.items[0].time_published, 1206107460)
@@ -593,7 +628,8 @@ class Test_Basic_Feed_Items_Generator(unittest.TestCase):
         comments = [
           "http://comments.com/entry/0",
           "http://comments.com/entry/1",
-          "http://comments.com/entry/2"
+          "http://comments.com/entry/2",
+          "http://comments.com/entry/3"
         ]
         for index, item in enumerate(self.podcast.get_items(), start=0):
             self.assertEqual(item.comments, comments[index])
